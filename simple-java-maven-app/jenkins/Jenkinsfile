@@ -9,30 +9,12 @@ pipeline {
         stage('Build') {
             steps {
                 dir('simple-java-maven-app') {
-                    // Run your commands or perform operations in the specified directory
-                    sh 'ls'  // Example shell command
-                    sh 'echo "Hello, World!"'  // Another example shell command
                     sh 'mvn clean install' // Corrected this line
                 }
             }
         }
-        stage('Test') {
-            steps {
-                dir('simple-java-maven-app') {
-                    // Run your commands or perform operations in the specified directory
-                    sh 'mvn test'  // Corrected this line
-                }
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
+    
         }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
+    
     }
 }
