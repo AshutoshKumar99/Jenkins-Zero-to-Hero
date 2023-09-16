@@ -9,12 +9,9 @@ pipeline {
         stage('Build') {
             steps {
                 dir('simple-java-maven-app') {
-                    sh 'mvn clean install' // Corrected this line
+                    sh 'mvn clean install'
                 }
             }
         }
-    
-        }
-    
     }
 }
