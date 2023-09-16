@@ -9,12 +9,11 @@ pipeline {
         stage('Build') {
             steps {
                 dir('simple-java-maven-app') {
-                        // Run your commands or perform operations in the specified directory
-                        sh 'ls'  // Example shell command
-                        sh 'echo "Hello, World!"'  // Another example shell command
-                    'mvn -B -DskipTests clean package'
-                    }
-        
+                    // Run your commands or perform operations in the specified directory
+                    sh 'ls'  // Example shell command
+                    sh 'echo "Hello, World!"'  // Another example shell command
+                    sh 'mvn -B -DskipTests clean package' // Corrected this line
+                }
             }
         }
         stage('Test') {
