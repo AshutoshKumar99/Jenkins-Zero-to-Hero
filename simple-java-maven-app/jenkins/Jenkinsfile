@@ -12,13 +12,16 @@ pipeline {
                     // Run your commands or perform operations in the specified directory
                     sh 'ls'  // Example shell command
                     sh 'echo "Hello, World!"'  // Another example shell command
-                    sh 'mvn -B -DskipTests clean package' // Corrected this line
+                    sh 'mvn clean install' // Corrected this line
                 }
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                dir('simple-java-maven-app') {
+                    // Run your commands or perform operations in the specified directory
+                    sh 'mvn test'  // Corrected this line
+                }
             }
             post {
                 always {
