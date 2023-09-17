@@ -13,6 +13,7 @@ pipeline {
         stage('Npm Install') {
             steps {
                 dir('node-express-hello-world') { 
+                    sh 'npm cache clean --force'
                     sh 'npm install'
                 }
             }
