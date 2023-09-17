@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-            image 'node:8' 
+            image 'node:18-alpine' 
         }
     }
     stages {
@@ -13,7 +13,6 @@ pipeline {
         stage('Npm Install') {
             steps {
                 dir('node-express-hello-world') { 
-                    sh 'npm cache clean --force'
                     sh 'npm install'
                 }
             }
