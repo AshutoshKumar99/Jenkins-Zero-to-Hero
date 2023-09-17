@@ -10,6 +10,11 @@ pipeline {
                 sh 'node --version'
             }
         }
+		  stage('Change Ownership') {
+            steps {
+                sh "chown -R 115:122 ${WORKSPACE}/.npm"
+            }
+        }
         stage('Npm Install') {
             steps {
                 dir('node-express-hello-world') { 
