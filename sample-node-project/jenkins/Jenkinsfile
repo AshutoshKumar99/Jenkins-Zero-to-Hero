@@ -19,6 +19,11 @@ pipeline {
                 }
             }
         }
+        stage('Fix Permissions') {
+            steps {
+                sh 'sudo chown -R 115:122 /.npm'
+            }
+        }
         stage('Npm Start') {
             steps {
                 dir('sample-node-project') {
