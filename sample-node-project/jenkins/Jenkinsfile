@@ -1,23 +1,30 @@
 pipeline {
-  agent {
-    docker { image 'node:16-alpine' }
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-      }
+    agent {
+        docker {
+            image 'node:16-alpine'
+        }
     }
-	stage('Npm Install') {
-      steps {
-        sh 'npm install'
-      }
+    stages {
+        stage('Test') {
+            steps {
+                dir('sample-node-project') {
+                    sh 'node --version'
+                }
+            }
+        }
+        stage('Npm Install') {
+            steps {
+                dir('sample-node-project') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Npm Start') {
+            steps {
+                dir('sample-node-project') {
+                    sh 'npm start &'
+                }
+            }
+        }
     }
-	stage('Npm Start') {
-      steps {
-        sh 'npm start'
-      }
-    }
-	
-  }
 }
