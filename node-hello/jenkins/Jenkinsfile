@@ -12,6 +12,13 @@ pipeline {
                 }
             }
         }
+        stage('Npm install') {
+            steps {
+                dir('node-hello') {
+                    sh 'npm install'
+                }
+            }
+        }
         stage('Npm Start') {
             steps {
                 dir('node-hello') {
