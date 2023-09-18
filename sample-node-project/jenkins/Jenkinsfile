@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:8'
+            image 'node:16-alpine'
         }
     }
     stages {
@@ -15,13 +15,8 @@ pipeline {
         stage('Npm Install') {
             steps {
                 dir('sample-node-project') {
-                    sh 'npm install'
+                    sh 'docker run -v $PWD:/app -w /app node:16-alpine npm install'
                 }
-            }
-        }
-        stage('Fix Permissions') {
-            steps {
-                sh 'sudo chown -R 115:122 /.npm'
             }
         }
         stage('Npm Start') {
