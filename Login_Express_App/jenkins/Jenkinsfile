@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:16-alpine'
+            user 'node'  // Set the user to 'node' inside the Docker container
         }
     }
     stages {
@@ -15,7 +16,7 @@ pipeline {
         stage('Npm install') {
             steps {
                 dir('Login_Express_App') {
-                    sh 'npm install'
+                    sh 'npm install --unsafe-perm'  // Use '--unsafe-perm' to avoid permission issues
                 }
             }
         }
