@@ -1,18 +1,30 @@
 pipeline {
-  agent {
-    docker { image 'node:16-alpine' }
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-      }
+    agent {
+        docker {
+            image 'node:16-alpine'
+        }
     }
-	stage('Npm Start') {
-      steps {
-        sh 'npm start'
-      }
+    stages {
+        stage('Test') {
+            steps {
+                dir('Login_Express_App') {
+                    sh 'node --version'
+                }
+            }
+        }
+        stage('Npm install') {
+            steps {
+                dir('Login_Express_App') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Npm Start') {
+            steps {
+                dir('Login_Express_App') {
+                    sh 'npm start &'
+                }
+            }
+        }
     }
-	
-  }
 }
